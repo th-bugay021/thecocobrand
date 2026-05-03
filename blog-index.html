@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal — The Coco Brand</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --blush: #f2c8c0; --deep-rose: #c0424a; --petal: #fce8e4;
+        --wine: #6b1a22; --cream: #fdf6f0; --ink: #1c0d0f;
+        --nude: #c9a090; --soft-gray: #f7f0ed;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--ink); }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; width: 100%; }
+
+    header {
+        position: fixed; top:0; left:0; right:0; z-index:200;
+        background: rgba(253,246,240,0.95); backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(192,66,74,0.08); padding: 0 5%;
+        height: 68px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+        font-family: 'Playfair Display', serif; font-size: 1.1rem;
+        font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--wine);
+    }
+    .back-btn {
+        font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--ink); display: flex; align-items: center; gap: 8px;
+        transition: gap 0.3s, color 0.3s;
+    }
+    .back-btn:hover { gap: 14px; color: var(--deep-rose); }
+
+    .page-hero {
+        background: var(--ink); padding: 140px 5% 70px; text-align: center;
+    }
+    .page-hero-label {
+        font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+        color: var(--blush); margin-bottom: 16px; display: flex;
+        align-items: center; justify-content: center; gap: 10px;
+    }
+    .page-hero-label::before, .page-hero-label::after {
+        content:''; display:block; width:28px; height:1px; background:var(--blush);
+    }
+    .page-hero h1 {
+        font-family: 'Playfair Display', serif; font-size: clamp(36px, 6vw, 72px);
+        font-weight: 900; color: white; line-height: 1.05;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--blush); }
+
+    .articles-grid {
+        max-width: 1100px; margin: 0 auto; padding: 80px 5%;
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+
+    .article-card {
+        border-radius: 14px; overflow: hidden; background: var(--soft-gray);
+        transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column;
+    }
+    .article-card:hover { transform: translateY(-6px); box-shadow: 0 18px 54px rgba(107,26,34,0.1); }
+
+    .article-card-img { aspect-ratio: 16/9; overflow: hidden; }
+    .article-card-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s; }
+    .article-card:hover .article-card-img img { transform: scale(1.06); }
+
+    .article-card-body { padding: 22px 22px 28px; flex: 1; display: flex; flex-direction: column; }
+    .article-cat { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--deep-rose); font-weight: 500; margin-bottom: 8px; }
+    .article-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.35; margin-bottom: 10px; }
+    .article-excerpt { font-size: 0.8rem; line-height: 1.75; color: #7a5560; font-weight: 300; margin-bottom: 20px; flex: 1; }
+    .article-meta { display: flex; align-items: center; gap: 10px; font-size: 0.65rem; color: var(--nude); margin-bottom: 16px; }
+    .article-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--nude); }
+    .article-link {
+        font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase;
+        color: var(--deep-rose); border-bottom: 1px solid rgba(192,66,74,0.3);
+        padding-bottom: 2px; align-self: flex-start;
+        transition: color 0.25s, border-color 0.25s;
+    }
+    .article-link:hover { color: var(--wine); border-color: var(--wine); }
+
+    footer { background: var(--ink); padding: 40px 5%; text-align: center; }
+    footer p { font-size: 0.72rem; color: rgba(253,246,240,0.25); }
+    footer a { color: var(--blush); font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; display: inline-block; margin-top: 10px; }
+
+    @media (max-width: 768px) {
+        .articles-grid { grid-template-columns: 1fr; padding: 50px 5%; }
+    }
+    @media (max-width: 1024px) {
+        .articles-grid { grid-template-columns: 1fr 1fr; }
+    }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-logo">The Coco Brand</div>
+    <!-- FIX: correct back link to homepage -->
+    <a href="./index.html" class="back-btn">← Back to Home</a>
+</header>
+
+<div class="page-hero">
+    <div class="page-hero-label">Journal</div>
+    <h1>Beauty <em>Reads</em></h1>
+</div>
+
+<div class="articles-grid">
+
+    <div class="article-card">
+        <div class="article-card-img"><img src="./coco-img-3.jpeg" alt="Bold Lips Guide"></div>
+        <div class="article-card-body">
+            <div class="article-cat">Beauty Tips</div>
+            <h2 class="article-title">The Ultimate Guide to Bold Lips — Without the Mess</h2>
+            <p class="article-excerpt">A bold lip done right is transformative. Here's how to choose the right formula, perfect your edges, and make it last.</p>
+            <div class="article-meta"><span>May 2025</span><div class="article-meta-dot"></div><span>4 min read</span></div>
+            <a href="./blog4.html" class="article-link">Read Article →</a>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <div class="article-card-img"><img src="./coco-img-6.jpeg" alt="Signature Look"></div>
+        <div class="article-card-body">
+            <div class="article-cat">Lifestyle</div>
+            <h2 class="article-title">Building a Signature Look: Making Lip Colour Your Identity</h2>
+            <p class="article-excerpt">Finding the shade that feels like you — and making it yours completely.</p>
+            <div class="article-meta"><span>June 2025</span><div class="article-meta-dot"></div><span>5 min read</span></div>
+            <a href="./blog6.html" class="article-link">Read Article →</a>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <div class="article-card-img"><img src="./coco-img-1.jpeg" alt="Lip Shade Guide"></div>
+        <div class="article-card-body">
+            <div class="article-cat">Lip Care</div>
+            <h2 class="article-title">How to Find Your Perfect Lip Shade for Any Skin Tone</h2>
+            <p class="article-excerpt">Choosing the right lip colour starts with understanding your undertone, skin depth, and the mood you want to express.</p>
+            <div class="article-meta"><span>April 2025</span><div class="article-meta-dot"></div><span>5 min read</span></div>
+            <a href="./blog1.html" class="article-link">Read Article →</a>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <div class="article-card-img"><img src="./coco-img-2.jpeg" alt="Lip Colour Longevity"></div>
+        <div class="article-card-body">
+            <div class="article-cat">Tutorials</div>
+            <h2 class="article-title">5 Ways to Make Your Lip Colour Last All Day</h2>
+            <p class="article-excerpt">Long-lasting colour is less about the product and more about technique. Our top hacks from morning to night.</p>
+            <div class="article-meta"><span>March 2025</span><div class="article-meta-dot"></div><span>3 min read</span></div>
+            <a href="./blog2.html" class="article-link">Read Article →</a>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <div class="article-card-img"><img src="./coco-img-4.jpeg" alt="Brand Story"></div>
+        <div class="article-card-body">
+            <div class="article-cat">Brand Story</div>
+            <h2 class="article-title">Why We Started The Coco Brand</h2>
+            <p class="article-excerpt">The story behind our first collection and the women who inspired every shade we've ever made.</p>
+            <div class="article-meta"><span>February 2025</span><div class="article-meta-dot"></div><span>4 min read</span></div>
+            <a href="./blog3.html" class="article-link">Read Article →</a>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <div class="article-card-img"><img src="./coco-img-5.jpeg" alt="Lip Skincare"></div>
+        <div class="article-card-body">
+            <div class="article-cat">Skincare</div>
+            <h2 class="article-title">Why Your Lips Need a Skincare Routine Too</h2>
+            <p class="article-excerpt">Your lips are some of the most delicate skin on your body. Here's how to keep them healthy, smooth, and ready for colour.</p>
+            <div class="article-meta"><span>January 2025</span><div class="article-meta-dot"></div><span>3 min read</span></div>
+            <a href="./blog5.html" class="article-link">Read Article →</a>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 The Coco Brand. All rights reserved.</p>
+    <a href="./index.html#blog">← Back to Home</a>
+</footer>
+
+</body>
+</html>

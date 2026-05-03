@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Coco Brand</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index2.css">
+    <link rel="stylesheet" href="./cart.css">
+    <script>
+        if (history.scrollRestoration) history.scrollRestoration = 'manual';
+        if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+    </script>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header id="main-header">
+    <div class="nav-inner">
+        <div class="nav-logo">The Coco Brand</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#collections">Our Story</a></li>
+            <li><a href="#skincare">Skincare</a></li>
+            <li><a href="#makeup">Makeup</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
+        <a href="#shop" class="nav-cta">Shop Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Mobile Nav Drawer -->
+<nav class="mobile-nav" id="mobile-nav">
+    <a href="#home"        onclick="closeMobileNav()">Home</a>
+    <a href="#shop"        onclick="closeMobileNav()">Shop</a>
+    <a href="#collections" onclick="closeMobileNav()">Our Story</a>
+    <a href="#skincare"    onclick="closeMobileNav()">Skincare</a>
+    <a href="#makeup"      onclick="closeMobileNav()">Makeup</a>
+    <a href="#blog"        onclick="closeMobileNav()">Blog</a>
+    <a href="#shop" class="mob-cta" onclick="closeMobileNav()">Shop Now</a>
+</nav>
+
+<!-- ═══════════════ FLOATING CART BUTTON ═══════════════ -->
+<button class="cart-fab" id="cart-fab" aria-label="View cart">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+    <span class="cart-fab-count" id="cart-fab-count">0</span>
+</button>
+
+<!-- ═══════════════ CART BACKDROP ═══════════════ -->
+<div class="cart-backdrop" id="cart-backdrop"></div>
+
+<!-- ═══════════════ CART DRAWER ═══════════════ -->
+<aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+        <div>
+            <div class="cart-drawer-title">Your Cart</div>
+            <div class="cart-drawer-subtitle" id="cart-drawer-count">0 items</div>
+        </div>
+        <button class="cart-close" id="cart-close" aria-label="Close cart">✕</button>
+    </div>
+
+    <div class="cart-empty" id="cart-empty">
+        <div class="cart-empty-icon">💄</div>
+        <p>Your cart is empty.<br>Add a shade to get started.</p>
+    </div>
+
+    <div class="cart-items" id="cart-items"></div>
+
+    <div class="cart-footer" id="cart-footer">
+        <div class="cart-total-row">
+            <span class="cart-total-label">Total</span>
+            <span class="cart-total-value" id="cart-total">₦0</span>
+        </div>
+        <button class="cart-checkout-btn" id="cart-checkout-btn">
+            <svg width="17" height="17" viewBox="0 0 32 32" fill="currentColor">
+                <path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm8.009 22.751c-.333.495-.998.651-1.494.318-4.092-2.5-9.247-3.065-15.312-1.681-.584.134-1.166-.232-1.3-.816-.135-.584.231-1.166.815-1.3 6.637-1.516 12.329-.864 16.926 1.945.497.332.651.997.365 1.534zm2.138-4.754c-.415.617-1.237.813-1.854.399-4.684-2.88-11.822-3.716-17.361-2.033-.719.215-1.479-.194-1.694-.912-.213-.719.195-1.479.913-1.694 6.328-1.921 14.188-.99 19.6 2.386.616.415.812 1.237.396 1.854zm.184-4.953c-5.615-3.334-14.876-3.64-20.228-2.014-.861.261-1.77-.222-2.031-1.083-.261-.86.222-1.769 1.083-2.03 6.147-1.865 16.369-1.505 22.836 2.327.776.46 1.033 1.455.572 2.231-.461.775-1.457 1.031-2.232.569z"/>
+            </svg>
+            Checkout via WhatsApp
+        </button>
+        <button class="cart-clear-btn" id="cart-clear-btn">Clear cart</button>
+    </div>
+</aside>
+
+<!-- ═══════════════ TOAST ═══════════════ -->
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="home">
+    <div class="hero-deco-circle"></div>
+    <div class="hero-bg-word">Coco</div>
+
+    <div class="hero-body">
+        <div class="hero-text">
+            <div class="pill"><div class="pill-dot"></div> New Collection — 2026</div>
+            <h1 class="hero-h1">
+                Wear Your<br>
+                <em>Boldest</em><br>
+                Self.
+            </h1>
+            <p class="hero-desc">
+                Luxurious lip colour crafted for every skin tone.
+                From rich reds to velvety nudes — find the shade
+                that tells your story.
+            </p>
+            <div class="hero-btns">
+                <a href="#shop" class="btn-dark">Shop the Collection</a>
+                <a href="#makeup" class="btn-text">See Shades →</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="new-tag">✦ New Drop</div>
+            <div class="p-card c1"><img src="./coco-img-1.jpeg" alt="Red Lip Colour"></div>
+            <div class="p-card c2"><img src="./coco-img-2.jpeg" alt="Nude Lip Colour"></div>
+            <div class="p-card c3"><img src="./coco-img-4.jpeg" alt="Coco Brand Collection"></div>
+            <div class="p-card c4"><img src="./coco-img-3.jpeg" alt="Dark Red Lip Colour"></div>
+        </div>
+
+        <div class="hero-visual-mobile">
+            <div class="hvm-card big"><img src="./coco-img-4.jpeg" alt="Coco Brand Collection"></div>
+            <div class="hvm-card sm"><img src="./coco-img-1.jpeg" alt="Red Lip Colour"></div>
+            <div class="hvm-card sm"><img src="./coco-img-2.jpeg" alt="Nude Lip Colour"></div>
+        </div>
+    </div>
+
+    <div class="hero-stats">
+        <div><div class="stat-num">12+</div><div class="stat-lbl">Shades Available</div></div>
+        <div><div class="stat-num">8h</div><div class="stat-lbl">Long-Lasting Wear</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-lbl">Cruelty Free</div></div>
+        <div><div class="stat-num">5K+</div><div class="stat-lbl">Happy Customers</div></div>
+    </div>
+
+    <div class="marquee">
+        <div class="marquee-track">
+            <div class="m-item"><span>The Coco Brand</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Bold Lips, Bold You</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>New Collection</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Luxury Lip Colour</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Wear Your Shade</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Made for Every Tone</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>The Coco Brand</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Bold Lips, Bold You</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>New Collection</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Luxury Lip Colour</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Wear Your Shade</span><div class="m-dot"></div></div>
+            <div class="m-item"><span>Made for Every Tone</span><div class="m-dot"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ SHOP ═══════════════ -->
+<section id="shop">
+    <div class="section-inner">
+        <div class="shop-header reveal">
+            <div>
+                <div class="section-label">Our Products</div>
+                <h2 class="section-title">Find Your <em>Perfect</em> Shade</h2>
+            </div>
+            <a href="#" class="view-all">View All Products →</a>
+        </div>
+
+        <div class="products-grid">
+
+            <div class="product-tile reveal"
+                 data-id="scarlet-kiss" data-name="Scarlet Kiss"
+                 data-type="Matte Lip Colour" data-price="8500"
+                 data-shade="#c0424a" data-img="./coco-img-1.jpeg">
+                <div class="product-img-wrap"><img src="./coco-img-1.jpeg" alt="Scarlet Kiss"></div>
+                <div class="product-info">
+                    <div class="product-shade" style="background:#c0424a;"></div>
+                    <div class="product-name">Scarlet Kiss</div>
+                    <div class="product-type">Matte Lip Colour</div>
+                    <div class="product-footer">
+                        <div class="product-price">₦8,500</div>
+                        <button class="add-btn" aria-label="Add Scarlet Kiss to cart">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>+</svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-tile reveal" style="transition-delay:0.1s"
+                 data-id="bare-velvet" data-name="Bare Velvet"
+                 data-type="Satin Lip Colour" data-price="8500"
+                 data-shade="#c9a090" data-img="./coco-img-2.jpeg">
+                <div class="product-img-wrap"><img src="./coco-img-2.jpeg" alt="Bare Velvet"></div>
+                <div class="product-info">
+                    <div class="product-shade" style="background:#c9a090;"></div>
+                    <div class="product-name">Bare Velvet</div>
+                    <div class="product-type">Satin Lip Colour</div>
+                    <div class="product-footer">
+                        <div class="product-price">₦8,500</div>
+                        <button class="add-btn" aria-label="Add Bare Velvet to cart">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-tile reveal" style="transition-delay:0.2s"
+                 data-id="midnight-plum" data-name="Midnight Plum"
+                 data-type="Velvet Lip Colour" data-price="8500"
+                 data-shade="#6b1a22" data-img="./coco-img-3.jpeg">
+                <div class="product-img-wrap"><img src="./coco-img-3.jpeg" alt="Midnight Plum"></div>
+                <div class="product-info">
+                    <div class="product-shade" style="background:#6b1a22;"></div>
+                    <div class="product-name">Midnight Plum</div>
+                    <div class="product-type">Velvet Lip Colour</div>
+                    <div class="product-footer">
+                        <div class="product-price">₦8,500</div>
+                        <button class="add-btn" aria-label="Add Midnight Plum to cart">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-tile reveal" style="transition-delay:0.3s"
+                 data-id="coco-rose" data-name="Coco Rose"
+                 data-type="Glossy Lip Colour" data-price="8500"
+                 data-shade="#e8748a" data-img="./coco-img-4.jpeg">
+                <div class="product-img-wrap"><img src="./coco-img-4.jpeg" alt="Coco Rose"></div>
+                <div class="product-info">
+                    <div class="product-shade" style="background:#e8748a;"></div>
+                    <div class="product-name">Coco Rose</div>
+                    <div class="product-type">Glossy Lip Colour</div>
+                    <div class="product-footer">
+                        <div class="product-price">₦8,500</div>
+                        <button class="add-btn" aria-label="Add Coco Rose to cart">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-tile reveal" style="transition-delay:0.4s"
+                 data-id="crystal-gloss" data-name="Crystal Gloss"
+                 data-type="Glass Lip Colour" data-price="8500"
+                 data-shade="#e8ddd8" data-img="./coco-img-5.jpeg">
+                <div class="product-img-wrap"><img src="./coco-img-5.jpeg" alt="Crystal Gloss"></div>
+                <div class="product-info">
+                    <div class="product-shade" style="background:#e8ddd8;"></div>
+                    <div class="product-name">Crystal Gloss</div>
+                    <div class="product-type">Glass Lip Colour</div>
+                    <div class="product-footer">
+                        <div class="product-price">₦8,500</div>
+                        <button class="add-btn" aria-label="Add Crystal Gloss to cart">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-tile reveal" style="transition-delay:0.5s"
+                 data-id="cocoa-dream" data-name="Cocoa Dream"
+                 data-type="Rich Brown Lip Colour" data-price="8500"
+                 data-shade="#5c3317" data-img="./coco-img-6.jpeg">
+                <div class="product-img-wrap"><img src="./coco-img-6.jpeg" alt="Cocoa Dream"></div>
+                <div class="product-info">
+                    <div class="product-shade" style="background:#5c3317;"></div>
+                    <div class="product-name">Cocoa Dream</div>
+                    <div class="product-type">Rich Brown Lip Colour</div>
+                    <div class="product-footer">
+                        <div class="product-price">₦8,500</div>
+                        <button class="add-btn" aria-label="Add Cocoa Dream to cart">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ OUR STORY ═══════════════ -->
+<section id="collections">
+    <div class="about-inner">
+        <div class="about-img-wrap reveal">
+            <div class="about-img-main">
+                <img src="./coco-img-4.jpeg" alt="The Coco Brand Story">
+            </div>
+            <div class="about-img-accent">
+                <img src="./coco-img-3.jpeg" alt="Product Detail">
+            </div>
+        </div>
+        <div class="about-text reveal" style="transition-delay:0.15s">
+            <div class="section-label">Our Story</div>
+            <h2 class="section-title">Born from a <em>Love</em> of Colour</h2>
+            <p class="about-body">
+                The Coco Brand was built on one belief — that every woman deserves a lip colour
+                that feels as powerful as she does. We craft each shade with intention,
+                using formulas that honour all skin tones without compromise.
+                <br><br>
+                From our first collection to today, bold beauty has always been at our core.
+            </p>
+            <a href="#shop" class="btn-dark">Explore Collections</a>
+            <div class="about-pillars">
+                <div class="pillar">
+                    <div class="pillar-icon"><img src="./ingredients.png" alt="Clean Formula"></div>
+                    <div class="pillar-title">Clean Formula</div>
+                    <div class="pillar-desc">Made without harmful ingredients. Kind to your skin and lips.</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><img src="./lipstick.png" alt="All Skin Tones"></div>
+                    <div class="pillar-title">All Skin Tones</div>
+                    <div class="pillar-desc">Every shade is designed to complement melanin-rich skin beautifully.</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><img src="./cruelty-free.png" alt="Cruelty Free"></div>
+                    <div class="pillar-title">Cruelty Free</div>
+                    <div class="pillar-desc">100% cruelty free. Always. No exceptions.</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon"><img src="./24-hours.png" alt="Long Lasting"></div>
+                    <div class="pillar-title">Long Lasting</div>
+                    <div class="pillar-desc">Up to 8 hours of comfortable, vibrant wear without reapplying.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ SKINCARE ═══════════════ -->
+<section id="skincare">
+    <div class="skincare-inner">
+        <div class="skincare-top reveal">
+            <div>
+                <div class="section-label">Skincare</div>
+                <h2 class="section-title">Your Lip Care <em>Routine</em></h2>
+            </div>
+            <p class="section-sub">Healthy lips start with the right routine. Here's how to get the most from your Coco colours.</p>
+        </div>
+        <div class="skincare-steps">
+            <div class="step-card reveal">
+                <div class="step-num">01</div>
+                <div class="step-title">Hydrate & Prep</div>
+                <p class="step-desc">Start with a hydrating lip balm to smooth and moisturise. Let it absorb for 2 minutes before applying colour for a flawless base.</p>
+                <span class="step-tag">✦ Morning Routine</span>
+            </div>
+            <div class="step-card reveal" style="transition-delay:0.12s">
+                <div class="step-num">02</div>
+                <div class="step-title">Apply with Precision</div>
+                <p class="step-desc">Line your lips with a matching pencil, then fill in with your Coco lip colour. Start from the centre and blend outward for even coverage.</p>
+                <span class="step-tag">✦ Application Tip</span>
+            </div>
+            <div class="step-card reveal" style="transition-delay:0.24s">
+                <div class="step-num">03</div>
+                <div class="step-title">Lock In the Colour</div>
+                <p class="step-desc">Press a thin tissue over your lips and lightly dust translucent powder over it. This locks in your colour for all-day wear.</p>
+                <span class="step-tag">✦ Long Wear Hack</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ MAKEUP ═══════════════ -->
+<section id="makeup">
+    <div class="makeup-bg-word">Colour</div>
+    <div class="makeup-inner">
+        <div class="makeup-text reveal">
+            <div class="section-label">Makeup</div>
+            <h2 class="makeup-h2">Colour That<br>Speaks First.</h2>
+            <p class="makeup-desc">
+                Our lip colours are bold enough to be your entire look.
+                Rich pigments, creamy textures, and shades that were made
+                for women who refuse to go unnoticed.
+            </p>
+            <a href="#shop" class="btn-white">Shop Lip Colours</a>
+        </div>
+        <div class="makeup-images reveal" style="transition-delay:0.15s">
+            <div class="makeup-img tall"><img src="./coco-img-3.jpeg" alt="Dark Lip Colour"></div>
+            <div class="makeup-img"><img src="./coco-img-1.jpeg" alt="Red Lip Colour"></div>
+            <div class="makeup-img"><img src="./coco-img-2.jpeg" alt="Nude Lip Colour"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ BLOG ═══════════════ -->
+<section id="blog">
+    <div class="section-inner">
+        <div class="blog-header reveal">
+            <div>
+                <div class="section-label">Journal</div>
+                <h2 class="section-title">Beauty <em>Reads</em></h2>
+            </div>
+            <a href="./blog-index.html" class="view-all">All Articles →</a>
+        </div>
+        <div class="blog-grid">
+            <div class="blog-card featured reveal" data-article>
+                <div class="blog-img"><img src="./coco-img-1.jpeg" alt="Lip Shade Guide"></div>
+                <div class="blog-body">
+                    <div class="blog-cat">Lip Care</div>
+                    <h3 class="blog-title">How to Find Your Perfect Lip Shade for Any Skin Tone</h3>
+                    <p class="blog-excerpt">Choosing the right lip colour can feel overwhelming. We break down exactly how to match shades to your undertone and occasion.</p>
+                    <div class="blog-meta"><span>April 2025</span><div class="blog-meta-dot"></div><span>5 min read</span></div>
+                </div>
+                <div class="blog-overlay">
+                    <div class="blog-overlay-inner">
+                        <div class="blog-cat" style="color:var(--blush)">Lip Care</div>
+                        <h3 class="blog-overlay-title">How to Find Your Perfect Lip Shade for Any Skin Tone</h3>
+                        <p>Finding the right shade starts with your undertone. Warm undertones suit coral and orange-based reds. Cool undertones shine in berries and wine.</p>
+                        <p>For daytime, reach for Bare Velvet or Crystal Gloss. For evenings, Scarlet Kiss and Midnight Plum are your power shades.</p>
+                        <a href="./blog1.html" class="blog-read-btn" onclick="event.stopPropagation()">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-card reveal" style="transition-delay:0.1s" data-article>
+                <div class="blog-img"><img src="./coco-img-2.jpeg" alt="Lip Colour Longevity"></div>
+                <div class="blog-body">
+                    <div class="blog-cat">Tutorials</div>
+                    <h3 class="blog-title">5 Ways to Make Your Lip Colour Last All Day</h3>
+                    <p class="blog-excerpt">Our top longevity hacks for keeping your Coco colour looking freshly applied from morning to night.</p>
+                    <div class="blog-meta"><span>March 2025</span><div class="blog-meta-dot"></div><span>3 min read</span></div>
+                </div>
+                <div class="blog-overlay">
+                    <div class="blog-overlay-inner">
+                        <div class="blog-cat" style="color:var(--blush)">Tutorials</div>
+                        <h3 class="blog-overlay-title">5 Ways to Make Your Lip Colour Last All Day</h3>
+                        <p>Exfoliate first. Line and fill. Apply in thin layers and blot between coats. Use the powder trick to lock in colour. Avoid oily food and use a straw.</p>
+                        <a href="./blog2.html" class="blog-read-btn" onclick="event.stopPropagation()">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="blog-card reveal" style="transition-delay:0.2s" data-article>
+                <div class="blog-img"><img src="./coco-img-4.jpeg" alt="Brand Story"></div>
+                <div class="blog-body">
+                    <div class="blog-cat">Brand Story</div>
+                    <h3 class="blog-title">Why We Started The Coco Brand</h3>
+                    <p class="blog-excerpt">The story behind our first collection and the women who inspired every shade we've ever made.</p>
+                    <div class="blog-meta"><span>February 2025</span><div class="blog-meta-dot"></div><span>4 min read</span></div>
+                </div>
+                <div class="blog-overlay">
+                    <div class="blog-overlay-inner">
+                        <div class="blog-cat" style="color:var(--blush)">Brand Story</div>
+                        <h3 class="blog-overlay-title">Why We Started The Coco Brand</h3>
+                        <p>The Coco Brand started with frustration — lip colours that oxidised muddy, nudes that washed out grey. We built something better. Every shade tested across all skin tones.</p>
+                        <a href="./blog3.html" class="blog-read-btn" onclick="event.stopPropagation()">Read Full Article →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════ WHATSAPP ORDER ═══════════════ -->
+<div class="whatsapp-section">
+    <div class="whatsapp-inner reveal">
+        <h2>Order <em>Directly</em> With Us</h2>
+        <p>Pick your shades, add them to your cart, then checkout on WhatsApp. We'll confirm instantly.</p>
+        <div class="wa-options">
+            <div class="wa-option-card" data-id="scarlet-kiss" data-name="Scarlet Kiss" data-type="Matte Lip Colour" data-price="8500" data-shade="#c0424a" data-img="./coco-img-1.jpeg" onclick="cartAddFromWA(this)">
+                <div class="wa-option-img"><img src="./coco-img-1.jpeg" alt="Scarlet Kiss"></div>
+                <div class="wa-option-shade" style="background:#c0424a;"></div>
+                <div class="wa-option-name">Scarlet Kiss</div>
+                <div class="wa-option-price">₦8,500 · Tap to add</div>
+            </div>
+            <div class="wa-option-card" data-id="bare-velvet" data-name="Bare Velvet" data-type="Satin Lip Colour" data-price="8500" data-shade="#c9a090" data-img="./coco-img-2.jpeg" onclick="cartAddFromWA(this)">
+                <div class="wa-option-img"><img src="./coco-img-2.jpeg" alt="Bare Velvet"></div>
+                <div class="wa-option-shade" style="background:#c9a090;"></div>
+                <div class="wa-option-name">Bare Velvet</div>
+                <div class="wa-option-price">₦8,500 · Tap to add</div>
+            </div>
+            <div class="wa-option-card" data-id="midnight-plum" data-name="Midnight Plum" data-type="Velvet Lip Colour" data-price="8500" data-shade="#6b1a22" data-img="./coco-img-3.jpeg" onclick="cartAddFromWA(this)">
+                <div class="wa-option-img"><img src="./coco-img-3.jpeg" alt="Midnight Plum"></div>
+                <div class="wa-option-shade" style="background:#6b1a22;"></div>
+                <div class="wa-option-name">Midnight Plum</div>
+                <div class="wa-option-price">₦8,500 · Tap to add</div>
+            </div>
+            <div class="wa-option-card" data-id="crystal-gloss" data-name="Crystal Gloss" data-type="Glass Lip Colour" data-price="8500" data-shade="#e8ddd8" data-img="./coco-img-5.jpeg" onclick="cartAddFromWA(this)">
+                <div class="wa-option-img"><img src="./coco-img-5.jpeg" alt="Crystal Gloss"></div>
+                <div class="wa-option-shade" style="background:#e8ddd8; border:1px solid #ccc;"></div>
+                <div class="wa-option-name">Crystal Gloss</div>
+                <div class="wa-option-price">₦8,500 · Tap to add</div>
+            </div>
+            <div class="wa-option-card" data-id="cocoa-dream" data-name="Cocoa Dream" data-type="Rich Brown Lip Colour" data-price="8500" data-shade="#5c3317" data-img="./coco-img-6.jpeg" onclick="cartAddFromWA(this)">
+                <div class="wa-option-img"><img src="./coco-img-6.jpeg" alt="Cocoa Dream"></div>
+                <div class="wa-option-shade" style="background:#5c3317;"></div>
+                <div class="wa-option-name">Cocoa Dream</div>
+                <div class="wa-option-price">₦8,500 · Tap to add</div>
+            </div>
+            <div class="wa-option-card" data-id="coco-rose" data-name="Coco Rose" data-type="Glossy Lip Colour" data-price="8500" data-shade="#e8748a" data-img="./coco-img-4.jpeg" onclick="cartAddFromWA(this)">
+                <div class="wa-option-img"><img src="./coco-img-4.jpeg" alt="Coco Rose"></div>
+                <div class="wa-option-shade" style="background:#e8748a;"></div>
+                <div class="wa-option-name">Coco Rose</div>
+                <div class="wa-option-price">₦8,500 · Tap to add</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div>
+                <div class="footer-brand-name">The Coco Brand</div>
+                <p class="footer-tagline">Bold lip colours for women who refuse to go unnoticed.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><img src="./instagram.png" alt="Instagram"></a>
+                    <a href="#" class="social-link"><img src="./tiktok.png" alt="TikTok"></a>
+                    <a href="#" class="social-link"><img src="./twitter.png" alt="X / Twitter"></a>
+                    <a href="#" class="social-link"><img src="./facebook.png" alt="Facebook"></a>
+                    <a href="#" class="social-link"><img src="./whatsapp.png" alt="WhatsApp"></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Shop</div>
+                <ul>
+                    <li><a href="#shop">All Products</a></li>
+                    <li><a href="#shop">Lip Colours</a></li>
+                    <li><a href="#makeup">Makeup</a></li>
+                    <li><a href="#skincare">Skincare</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Company</div>
+                <ul>
+                    <li><a href="#collections">Our Story</a></li>
+                    <li><a href="#blog">Journal</a></li>
+                    <li><a href="#">Stockists</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Help</div>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">© 2026 The Coco Brand. All rights reserved.</span>
+            <span class="footer-copy">Made with ♥ in Nigeria</span>
+        </div>
+    </div>
+</footer>
+
+<script src="./index2.js"></script>
+<script src="./cart.js"></script>
+</body>
+</html>

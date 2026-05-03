@@ -1,0 +1,96 @@
+/* Shared styles for all blog article pages */
+:root {
+    --blush: #f2c8c0; --deep-rose: #c0424a; --petal: #fce8e4;
+    --wine: #6b1a22; --cream: #fdf6f0; --ink: #1c0d0f;
+    --nude: #c9a090; --soft-gray: #f7f0ed;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); font-family: 'DM Sans', sans-serif; color: var(--ink); }
+a { text-decoration: none; color: inherit; }
+
+header {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    background: rgba(253,246,240,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(192,66,74,0.08); padding: 0 5%;
+    height: 68px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem;
+    font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--wine);
+}
+.back-btn {
+    font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--ink); display: flex; align-items: center; gap: 8px;
+    transition: gap 0.3s, color 0.3s;
+}
+.back-btn:hover { gap: 14px; color: var(--deep-rose); }
+
+.article-hero {
+    min-height: 60vh; background: var(--petal);
+    display: flex; align-items: flex-end; padding: 120px 5% 60px;
+    position: relative; overflow: hidden;
+}
+.article-hero-img {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+}
+.article-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(28,13,15,0.7) 0%, rgba(28,13,15,0.1) 60%);
+}
+.article-hero-content { position: relative; z-index: 2; max-width: 800px; }
+.article-cat {
+    font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blush); display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 16px;
+}
+.article-cat::before { content:''; display:block; width:24px; height:1px; background:var(--blush); }
+.article-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 60px);
+    font-weight: 900; color: white; line-height: 1.1; margin-bottom: 20px;
+}
+.article-meta { font-size: 0.72rem; color: rgba(255,255,255,0.6); display: flex; gap: 16px; }
+.article-meta span { display: flex; align-items: center; gap: 6px; }
+
+.article-body { max-width: 740px; margin: 0 auto; padding: 80px 5%; }
+.article-body p { font-size: 0.97rem; line-height: 1.95; color: #5a3a3f; font-weight: 300; margin-bottom: 24px; }
+.article-body h2 {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem;
+    font-weight: 900; margin: 48px 0 18px; color: var(--ink);
+}
+.article-body h2 em { font-style: italic; color: var(--deep-rose); }
+.article-body ul { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px; }
+.article-body ul li {
+    font-size: 0.92rem; line-height: 1.8; color: #5a3a3f; font-weight: 300;
+    padding-left: 20px; position: relative;
+}
+.article-body ul li::before {
+    content: '✦'; position: absolute; left: 0;
+    color: var(--deep-rose); font-size: 0.5rem; top: 6px;
+}
+.article-tip {
+    background: var(--petal); border-left: 3px solid var(--deep-rose);
+    padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 32px 0;
+    font-size: 0.88rem; line-height: 1.8; color: var(--wine); font-style: italic;
+}
+.article-footer {
+    background: var(--ink); padding: 60px 5%; text-align: center; margin-top: 80px;
+}
+.article-footer p {
+    font-size: 0.8rem; color: rgba(253,246,240,0.4);
+    font-family: 'Playfair Display', serif; font-style: italic;
+}
+.article-footer a {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--deep-rose); color: white; padding: 14px 30px;
+    border-radius: 2px; font-size: 0.68rem; letter-spacing: 2px;
+    text-transform: uppercase; margin-top: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+.article-footer a:hover { background: var(--wine); transform: translateY(-2px); }
+
+@media (max-width: 768px) {
+    .article-hero { min-height: 50vh; padding: 100px 5% 40px; }
+    .article-body { padding: 50px 5%; }
+}
