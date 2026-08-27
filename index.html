@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Coco Brand</title>
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" class="favIcon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./index.css">
@@ -82,14 +82,46 @@
             <span class="cart-total-value" id="cart-total">₦0</span>
         </div>
         <button class="cart-checkout-btn" id="cart-checkout-btn">
-            <svg width="17" height="17" viewBox="0 0 32 32" fill="currentColor">
-                <path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm8.009 22.751c-.333.495-.998.651-1.494.318-4.092-2.5-9.247-3.065-15.312-1.681-.584.134-1.166-.232-1.3-.816-.135-.584.231-1.166.815-1.3 6.637-1.516 12.329-.864 16.926 1.945.497.332.651.997.365 1.534zm2.138-4.754c-.415.617-1.237.813-1.854.399-4.684-2.88-11.822-3.716-17.361-2.033-.719.215-1.479-.194-1.694-.912-.213-.719.195-1.479.913-1.694 6.328-1.921 14.188-.99 19.6 2.386.616.415.812 1.237.396 1.854zm.184-4.953c-5.615-3.334-14.876-3.64-20.228-2.014-.861.261-1.77-.222-2.031-1.083-.261-.86.222-1.769 1.083-2.03 6.147-1.865 16.369-1.505 22.836 2.327.776.46 1.033 1.455.572 2.231-.461.775-1.457 1.031-2.232.569z"/>
-            </svg>
-            Checkout via WhatsApp
+            Proceed to bank transfer
         </button>
         <button class="cart-clear-btn" id="cart-clear-btn">Clear cart</button>
     </div>
 </aside>
+
+<!-- Bank-transfer checkout: payment details are created by the secure Node backend. -->
+<div class="checkout-modal" id="checkout-modal" aria-hidden="true">
+    <div class="checkout-modal-panel" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+        <button class="checkout-modal-close" id="checkout-modal-close" aria-label="Close checkout">✕</button>
+        <div id="checkout-customer-step">
+            <div class="checkout-eyebrow">Secure checkout</div>
+            <h2 id="checkout-title">Pay by <em>bank transfer</em></h2>
+            <p class="checkout-intro">Enter your details to create a secure, one-time account number for this order.</p>
+            <form id="checkout-form" class="checkout-form">
+                <div class="checkout-name-row">
+                    <label>First name<input id="checkout-first-name" name="firstName" autocomplete="given-name" required></label>
+                    <label>Last name<input id="checkout-last-name" name="lastName" autocomplete="family-name" required></label>
+                </div>
+                <label>Email address<input id="checkout-email" name="email" type="email" autocomplete="email" required></label>
+                <label>Phone number<input id="checkout-phone" name="phone" type="tel" autocomplete="tel" placeholder="080..." required></label>
+                <p class="checkout-error" id="checkout-error" role="alert"></p>
+                <button class="checkout-submit" id="checkout-submit" type="submit">Create transfer account</button>
+            </form>
+        </div>
+        <div id="checkout-payment-step" hidden>
+            <div class="checkout-eyebrow">Awaiting transfer</div>
+            <h2>Transfer <em id="transfer-amount">₦0</em></h2>
+            <p class="checkout-intro">Use these details in your banking app. Your order will be confirmed automatically once payment is received.</p>
+            <div class="transfer-details">
+                <span>Bank</span><strong id="transfer-bank"></strong>
+                <span>Account name</span><strong id="transfer-account-name"></strong>
+                <span>Account number</span><strong class="transfer-account-number" id="transfer-account-number"></strong>
+                <span>Order reference</span><strong id="transfer-reference"></strong>
+                <span>Valid until</span><strong id="transfer-expiry"></strong>
+            </div>
+            <p class="checkout-note">Please transfer the exact amount shown. We’ll email you when your payment is confirmed.</p>
+        </div>
+    </div>
+</div>
 
 <!-- ═══════════════ TOAST ═══════════════ -->
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -451,52 +483,6 @@
     </div>
 </section>
 
-<!-- ═══════════════ WHATSAPP ORDER ═══════════════ -->
-<div class="whatsapp-section">
-    <div class="whatsapp-inner reveal">
-        <h2>Order <em>Directly</em> With Us</h2>
-        <p>Pick your shades, add them to your cart, then checkout on WhatsApp. We'll confirm instantly.</p>
-        <div class="wa-options">
-            <div class="wa-option-card" data-id="scarlet-kiss" data-name="Scarlet Kiss" data-type="Matte Lip Colour" data-price="5000" data-shade="#c0424a" data-img="./coco-img-1.jpeg" onclick="cartAddFromWA(this)">
-                <div class="wa-option-img"><img src="./coco-img-1.jpeg" alt="Scarlet Kiss"></div>
-                <div class="wa-option-shade" style="background:#c0424a;"></div>
-                <div class="wa-option-name">Scarlet Kiss</div>
-                <div class="wa-option-price">₦5,000 · Tap to add</div>
-            </div>
-            <div class="wa-option-card" data-id="bare-velvet" data-name="Bare Velvet" data-type="Satin Lip Colour" data-price="5000" data-shade="#c9a090" data-img="./coco-img-2.jpeg" onclick="cartAddFromWA(this)">
-                <div class="wa-option-img"><img src="./coco-img-2.jpeg" alt="Bare Velvet"></div>
-                <div class="wa-option-shade" style="background:#c9a090;"></div>
-                <div class="wa-option-name">Bare Velvet</div>
-                <div class="wa-option-price">₦5,000 · Tap to add</div>
-            </div>
-            <div class="wa-option-card" data-id="midnight-plum" data-name="Midnight Plum" data-type="Velvet Lip Colour" data-price="5000" data-shade="#6b1a22" data-img="./coco-img-3.jpeg" onclick="cartAddFromWA(this)">
-                <div class="wa-option-img"><img src="./coco-img-3.jpeg" alt="Midnight Plum"></div>
-                <div class="wa-option-shade" style="background:#6b1a22;"></div>
-                <div class="wa-option-name">Midnight Plum</div>
-                <div class="wa-option-price">₦5,000 · Tap to add</div>
-            </div>
-            <div class="wa-option-card" data-id="crystal-gloss" data-name="Crystal Gloss" data-type="Glass Lip Colour" data-price="5000" data-shade="#e8ddd8" data-img="./coco-img-5.jpeg" onclick="cartAddFromWA(this)">
-                <div class="wa-option-img"><img src="./coco-img-5.jpeg" alt="Crystal Gloss"></div>
-                <div class="wa-option-shade" style="background:#e8ddd8; border:1px solid #ccc;"></div>
-                <div class="wa-option-name">Crystal Gloss</div>
-                <div class="wa-option-price">₦5,000 · Tap to add</div>
-            </div>
-            <div class="wa-option-card" data-id="cocoa-dream" data-name="Cocoa Dream" data-type="Rich Brown Lip Colour" data-price="5000" data-shade="#5c3317" data-img="./coco-img-6.jpeg" onclick="cartAddFromWA(this)">
-                <div class="wa-option-img"><img src="./coco-img-6.jpeg" alt="Cocoa Dream"></div>
-                <div class="wa-option-shade" style="background:#5c3317;"></div>
-                <div class="wa-option-name">Cocoa Dream</div>
-                <div class="wa-option-price">₦5,000 · Tap to add</div>
-            </div>
-            <div class="wa-option-card" data-id="coco-rose" data-name="Coco Rose" data-type="Glossy Lip Colour" data-price="5000" data-shade="#e8748a" data-img="./coco-img-4.jpeg" onclick="cartAddFromWA(this)">
-                <div class="wa-option-img"><img src="./coco-img-4.jpeg" alt="Coco Rose"></div>
-                <div class="wa-option-shade" style="background:#e8748a;"></div>
-                <div class="wa-option-name">Coco Rose</div>
-                <div class="wa-option-price">₦5,000 · Tap to add</div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
     <div class="footer-inner">
@@ -509,7 +495,6 @@
                     <a href="#" class="social-link"><img src="./tiktok.png" alt="TikTok"></a>
                     <a href="#" class="social-link"><img src="./twitter.png" alt="X / Twitter"></a>
                     <a href="#" class="social-link"><img src="./facebook.png" alt="Facebook"></a>
-                    <a href="#" class="social-link"><img src="./whatsapp.png" alt="WhatsApp"></a>
                 </div>
             </div>
             <div class="footer-col">

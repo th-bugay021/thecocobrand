@@ -72,50 +72,36 @@ document.querySelectorAll('.p-card').forEach(card => {
     });
 
     card.addEventListener('mouseleave', () => {
-        // FIX: restore base transform with a smooth transition
-        // instead of clearing to '' which snaps due to keyframe conflict
+        
         card.style.transform = baseTransform;
-        // After transition completes, remove inline style so CSS keyframe resumes
+        
         setTimeout(() => {
             card.style.transform = '';
         }, 400);
     });
 });
 
-// ══════════════════════════════════════
-//  BLOG CARD TOGGLE (MOBILE)
-//  FIX: moved from inline onclick to delegated JS event listener.
-//  - On desktop: overlay is CSS :hover only, no JS toggle needed.
-//  - On mobile: tapping the card opens overlay; tapping the "Read Full
-//    Article" link navigates without firing toggleArticle first
-//    (stopPropagation on the link handles that — see index.html).
-//  - Tapping outside an open card closes it.
-//  - Removed the old global toggleArticle() function entirely.
-// ══════════════════════════════════════
+
 const blogCards = document.querySelectorAll('.blog-card[data-article]');
 
 blogCards.forEach(card => {
     card.addEventListener('click', (e) => {
-        // Only run toggle logic on mobile
         if (window.innerWidth > 768) return;
 
-        // If the click was on the read-more link, let it navigate (stopPropagation
-        // on the link itself prevents this handler from firing — but belt-and-braces:)
+        
         if (e.target.closest('.blog-read-btn')) return;
 
         const isActive = card.classList.contains('active');
 
-        // Close all other open cards first
         blogCards.forEach(c => c.classList.remove('active'));
 
-        // Toggle this one
         if (!isActive) {
             card.classList.add('active');
         }
     });
 });
 
-// Close active blog card when tapping outside (mobile)
+
 document.addEventListener('click', (e) => {
     if (window.innerWidth > 768) return;
     if (!e.target.closest('.blog-card')) {

@@ -21,6 +21,9 @@ body {
     color: var(--ink);
     overflow-x: hidden;
 }
+.favIcon{
+    border-radius: 20px;
+}
 
 img { display: block; width: 100%; }
 a  { text-decoration: none; color: inherit; }
@@ -417,28 +420,8 @@ section { padding: 100px 5%; }
 .blog-read-btn:hover { color:white;border-color:white; }
 
 /* ══════════════════════════════════════
-   WHATSAPP ORDER SECTION
+   CHECKOUT
 ══════════════════════════════════════ */
-.whatsapp-section { background:var(--petal);padding:90px 5%;text-align:center; }
-.whatsapp-inner { max-width:700px;margin:0 auto; }
-.whatsapp-section h2 { font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);font-weight:900;margin-bottom:14px;line-height:1.1; }
-.whatsapp-section h2 em { font-style:italic;color:var(--deep-rose); }
-.whatsapp-section p { font-size:0.88rem;color:#7a5560;line-height:1.8;font-weight:300;margin-bottom:40px; }
-
-.wa-options { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:36px; }
-.wa-option-card {
-    background:white;border-radius:12px;padding:22px 18px;
-    border:1.5px solid transparent;cursor:pointer;
-    transition:border-color 0.3s,transform 0.2s,box-shadow 0.3s;
-    color:var(--ink);display:block;
-}
-.wa-option-card:hover { border-color:var(--deep-rose);transform:translateY(-4px);box-shadow:0 12px 36px rgba(192,66,74,0.1); }
-.wa-option-card.in-cart { border-color:var(--deep-rose);background:rgba(192,66,74,0.04); }
-.wa-option-img { aspect-ratio:3/4;border-radius:8px;overflow:hidden;margin-bottom:14px; }
-.wa-option-img img { width:100%;height:100%;object-fit:cover; }
-.wa-option-shade { width:12px;height:12px;border-radius:50%;margin:0 auto 8px;box-shadow:0 2px 6px rgba(0,0,0,0.15); }
-.wa-option-name { font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;margin-bottom:4px; }
-.wa-option-price { font-size:0.78rem;color:var(--nude); }
 
 /* ══════════════════════════════════════
    FOOTER
@@ -744,7 +727,7 @@ footer { background:var(--ink);color:var(--cream);padding:60px 5% 30px; }
 
 .cart-checkout-btn {
     width: 100%;
-    background: #25D366; /* WhatsApp green */
+    background: var(--deep-rose);
     color: white;
     border: none;
     border-radius: 6px;
@@ -887,8 +870,6 @@ footer { background:var(--ink);color:var(--cream);padding:60px 5% 30px; }
     .blog-card.featured { grid-column: span 1; }
     .footer-top { grid-template-columns: 1fr; gap: 28px; }
     .about-pillars { grid-template-columns: 1fr; }
-    .wa-options { grid-template-columns: 1fr; }
-    .whatsapp-section { padding: 70px 5%; }
 
     /* Cart drawer full-width on mobile */
     .cart-drawer { width: 100vw; }
@@ -896,4 +877,4 @@ footer { background:var(--ink);color:var(--cream);padding:60px 5% 30px; }
     /* Toast + FAB sit a bit higher on mobile to clear browser chrome */
     .cart-fab  { bottom: 24px; right: 16px; }
     .cart-toast { bottom: 94px; right: 16px; left: 16px; max-width: 100%; }
-}
+} 
