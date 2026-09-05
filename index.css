@@ -847,11 +847,20 @@ footer { background:var(--ink);color:var(--cream);padding:60px 5% 30px; }
 
 @media (max-width: 768px) {
     section { padding: 70px 5%; }
-    .hero-body { flex-direction:column;padding:90px 5% 30px;gap:32px;align-items:stretch; }
+    /* On small screens, let the hero grow with the image grid instead of
+       shrinking the grid into the statistics area. */
+    #home { min-height: auto; }
+    .hero-body { flex:none; flex-direction:column;padding:90px 5% 30px;gap:32px;align-items:stretch; }
     .hero-text { max-width: 100%; }
     .hero-h1 { font-size: clamp(40px,11vw,60px); }
     .hero-visual { display: none; }
-    .hero-visual-mobile { display: grid; }
+    .hero-visual-mobile {
+        display:grid;
+        /* Fixed row sizing prevents the tall card from expanding both rows
+           and overlapping the statistics on iPhone-sized screens. */
+        grid-template-rows:repeat(2, clamp(128px, 38vw, 160px));
+    }
+    .hvm-card.big, .hvm-card.sm { aspect-ratio:auto; }
     .hero-stats {
         gap: 0; display: grid;
         grid-template-columns: 1fr 1fr;
