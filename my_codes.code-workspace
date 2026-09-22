@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../../../../xampp/htdocs/PHP-SANDBOX"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "my_codes"
+	}
+}

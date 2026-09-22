@@ -177,4 +177,10 @@ app.get('/api/orders/:reference', async (req, res) => {
 });
 
 app.use(express.static(__dirname, { dotfiles: 'deny' }));
-app.listen(PORT, () => console.log(`The Coco Brand is running at http://localhost:${PORT}`));
+
+// Vercel imports this app through /api/index.js. Keep the listener for local development only.
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => console.log(`The Coco Brand is running at http://localhost:${PORT}`));
+}
+
+export default app;

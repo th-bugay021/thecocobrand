@@ -1,6 +1,5 @@
-// ══════════════════════════════════════
 //  HAMBURGER MENU
-// ══════════════════════════════════════
+
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobile-nav');
 
@@ -21,18 +20,16 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// ══════════════════════════════════════
 //  STICKY HEADER SHADOW
-// ══════════════════════════════════════
+
 const header = document.getElementById('main-header');
 
 window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-// ══════════════════════════════════════
 //  SCROLL REVEAL
-// ══════════════════════════════════════
+
 const reveals = document.querySelectorAll('.reveal');
 
 const revealObserver = new IntersectionObserver((entries) => {
